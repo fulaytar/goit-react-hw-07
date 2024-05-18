@@ -18,7 +18,7 @@ export default function ContactForm() {
     number: yup
       .string()
       .required("Required")
-      .matches(/^(\d+|\d+-\d+)$/, "Must be only numbers"),
+      .matches(/^(\d+|\d+-\d+(?:-\d+)?)$/, "Must be only numbers"),
   });
 
   return (
