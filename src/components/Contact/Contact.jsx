@@ -16,7 +16,7 @@ export default function Contact({ item }) {
   };
 
   return (
-    <div className={css.container}>
+    <li className={css.container}>
       <h3>
         <IoPerson /> {item.name}
       </h3>
@@ -27,6 +27,6 @@ export default function Contact({ item }) {
       <button className={css.btn} onClick={send}>
         Delete
       </button>
-    </div>
+    </li>
   );
 }
