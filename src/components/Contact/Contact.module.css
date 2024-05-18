@@ -17,3 +17,7 @@
   right: -7%;
   transform: translate(-50%, -50%);
 }
+.remove {
+  background-color: red;
+  color: white;
+}

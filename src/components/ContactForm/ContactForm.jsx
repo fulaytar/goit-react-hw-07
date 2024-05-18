@@ -1,11 +1,13 @@
 import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
+import { nanoid } from "nanoid";
+import { addContact } from "../../redux/contactsOps";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
+  const loaderBtn = useSelector((state) => state.contacts.loading.add);
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -13,10 +15,7 @@ export default function ContactForm() {
       .required("Required")
       .min(3, "Too Short!")
       .max(50, "Too Long!"),
-    number: yup
-      .string()
-      .matches(/^\d{3}-\d{2}-\d{2}$/, "Invalid phone number format")
-      .required("Required"),
+    number: yup.string().required("Required"),
   });
 
   return (
@@ -26,11 +25,12 @@ export default function ContactForm() {
         initialValues={{
           name: "",
           number: "",
+          id: nanoid(),
         }}
-        /*         onSubmit={(values, { resetForm }) => {
+        onSubmit={(values, { resetForm }) => {
           dispatch(addContact(values));
           resetForm();
-        }} */
+        }}
       >
         <Form className={css.form}>
           <div>
@@ -63,6 +63,13 @@ export default function ContactForm() {
             </label>
           </div>
           <button className={css.btn} type="submit">
+            {loaderBtn && (
+              <div className={css.loader}>
+                <span className={css.bar}></span>
+                <span className={css.bar}></span>
+                <span className={css.bar}></span>
+              </div>
+            )}
             Add Contact
           </button>
         </Form>
