@@ -37,6 +37,7 @@ const slice = createSlice({
       })
       .addCase(addContact.rejected, (state) => {
         state.loading.add = false;
+        state.items = [];
         state.error = true;
       })
       .addCase(deleteContact.pending, (state) => {
@@ -49,6 +50,7 @@ const slice = createSlice({
       })
       .addCase(deleteContact.rejected, (state) => {
         state.error = true;
+        state.items = [];
       }),
 });
 

@@ -15,7 +15,10 @@ export default function ContactForm() {
       .required("Required")
       .min(3, "Too Short!")
       .max(50, "Too Long!"),
-    number: yup.string().required("Required"),
+    number: yup
+      .string()
+      .required("Required")
+      .matches(/^\d+$/, "Must be only numbers"),
   });
 
   return (
