@@ -62,7 +62,7 @@ export const selectLoadAdd = (state) => state.contacts.loading.add;
 
 export const selectError = (state) => state.contacts.error;
 
-export const selectVisibleContacts = createSelector(
+export const selectFilteredContacts = createSelector(
   [selectItems, selectTextFilter],
   (contacts, textFilter) => {
     console.log("selectVisibleContacts");

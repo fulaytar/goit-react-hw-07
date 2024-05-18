@@ -5,13 +5,13 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import {
   selectError,
   selectLoadGet,
-  selectVisibleContacts,
+  selectFilteredContacts,
 } from "../../redux/contactsSlice";
 import { useSelector } from "react-redux";
 /* import Contact from "../Contact/Contact"; */
 
 export default function ContactList() {
-  const tasks = useSelector(selectVisibleContacts);
+  const tasks = useSelector(selectFilteredContacts);
   const loader = useSelector(selectLoadGet);
   const error = useSelector(selectError);
   return (
